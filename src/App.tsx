@@ -38,7 +38,7 @@ function App() {
   );
 
   useEffect(() => {
-    fetch('/papers.json')
+    fetch(`${import.meta.env.BASE_URL}papers.json`)
       .then(r => r.json())
       .then((data: Record<string, unknown>[]) => {
         const normalized = data.map((p, i) => normalizePaper(p, i));
