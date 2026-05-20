@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased m-0;
+    font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  }
+  #root {
+    @apply w-full min-h-screen;
+  }
+}
