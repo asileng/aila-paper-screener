@@ -203,7 +203,7 @@ function App() {
 
         {/* Bottom zones */}
         <div className="flex gap-3 px-4 py-3 bg-gray-100 border-t border-gray-200">
-          {(['trash', 'relevant', 'reference'] as Zone[]).map((zone, i) => (
+          {(['trash', 'relevant', 'reference'] as Zone[]).map(zone => (
             <div key={zone} className="flex-1">
               <DropZone
                 zone={zone}

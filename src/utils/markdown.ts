@@ -1,4 +1,4 @@
-import type { Paper, ScreeningState, Zone } from '../types';
+import type { Paper, ScreeningState } from '../types';
 
 export function exportMarkdown(papers: Paper[], screening: ScreeningState): string {
   const groups: Record<string, Paper[]> = { relevant: [], reference: [], trash: [], unscreened: [] };
