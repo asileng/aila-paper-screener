@@ -166,8 +166,46 @@ git push  # 自动触发 GitHub Actions 部署
 | `bibtex.ts` | 通用 BibTeX 生成，替换 Paper 字段即可 |
 | `downloadFile()` | 通用文件下载，零依赖 |
 
+## 技术决策记录
+
+| 决策 | 原因 | 替代方案 |
+|------|------|---------|
+| Vite + React + TS | 快速原型、TypeScript 类型安全 | Vue、Next.js |
+| @dnd-kit 拖拽 | 替代已废弃的 react-beautiful-dnd | react-dnd |
+| Context + useReducer | 轻量、无需额外依赖 | Redux、Zustand |
+| localStorage 持久化 | 零后端、跨会话保留 | IndexedDB、后端 API |
+| TailwindCSS v4 | 原子化 CSS、无需手写样式文件 | CSS Modules、styled-components |
+| GitHub Pages 部署 | 免费、CI/CD 自动化 | Netlify、Vercel |
+
 ## 已知坑
 
-1. **Vite 子目录部署**: `vite.config.ts` 必须设置 `base: '/repo-name/'`
+1. **Vite 子目录部署**: `vite.config.ts` 必须设置 `base: '/repo-name/'`，否则页面空白
 2. **硬编码路径**: `fetch('/xxx.json')` → `fetch(\`${import.meta.env.BASE_URL}xxx.json\`)`
-3. **Year 类型不一致**: normalize 层统一处理 string/number
+3. **Year 类型不一致**: JSON 中 Year 可能是 string 或 number，normalize 层统一处理
+
+## 未来开发方向
+
+### 文献扩充与关联建立
+- 接入 OpenAlex API 实时搜索（而非静态 JSON）
+- 通过 DOI 自动抓取引用关系（cited_by / references）
+- 从 Semantic Scholar 获取语义相似度
+- 支持从 BibTeX / RIS 文件导入已有文献库
+
+### GUI 优化
+- 内嵌超链接：DOI 跳转、OA 链接直接打开全文
+- 封面展示：期刊封面缩略图、作者头像
+- 论文预览：内嵌 PDF 预览（如 `react-pdf`）
+- 双栏模式：左侧列表 + 右侧 PDF 对照阅读
+- 暗色模式：TailwindCSS 原生支持
+
+### 文献图谱构建
+- 时间线视图：按发表年份排序的横向时间线
+- 引用网络图：使用 `react-force-graph` 或 `d3-force` 绘制引用关系
+- 概念关联图：基于关键词共现的词云/力导向图
+- 理论脉络：按概念演进自动生成知识图谱
+
+### 与文献搜集流程整合
+- 将 Python 脚本输出直接接入前端
+- 建立"搜集 → 规范化 → 筛选 → 导出"一键流水线
+- 支持多数据源统一导入
+- 增量更新：只同步新增论文，保留已有筛选结果
