@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "research-pipeline-packager": {
+      "source": "asileng/skillbase",
+      "sourceType": "github",
+      "skillPath": "skills/research-pipeline-packager/SKILL.md",
+      "computedHash": "935b63839dfd22139755749aef3adcf8ea5d387e0de80c3469aa03ca57013c4b"
+    }
+  }
+}
